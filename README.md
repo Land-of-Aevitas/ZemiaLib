@@ -1,9 +1,3 @@
-# Diamond
+# ZemiaLib by OK_Diamond
 
-Created by following this guide: https://packaging.python.org/en/latest/tutorials/packaging-projects/
-
-Note to self:
-To push a new version, do the following:
-- Update pyptoject.toml (make sure to change the version number!)
-- Run `python -m build`
-- Run `python -m twine upload dist/*`
+This library was created to store various bits of code that I use across multiple projects, primarily relating to Zemia.
