@@ -8,16 +8,13 @@ def empty(a: int|list|str) -> bool:
     if isinstance(a, list):
         if len(a) == 0:
             return True
-        if len(a) == 1:
-            a = a[0]
-        else:
-            for i in a:
-                if not empty(i):
-                    return False
-            return True
-    elif isinstance(a, str):
+        for i in a:
+            if not empty(i):
+                return False
+        return True
+    if isinstance(a, str):
         return len(a) == 0 or a in ["-", " ", "."]
-    elif isinstance(a, int):
+    if isinstance(a, int):
         return a == 0
     return False
 
