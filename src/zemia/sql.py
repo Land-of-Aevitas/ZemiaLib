@@ -25,23 +25,31 @@ class Table:
         return rec_bank
 
     def update_record(self, key: str, value, conditions: str = "") -> bool:
-        '''Attempts to update a record. Returns True if an error occurred, and False otherwise.'''
+        '''Attempts to update a record. Returns False if an error occurred, and True otherwise.'''
         try:
             self._connection.cursor().execute(f"""UPDATE {self._table_name} SET {key} = {value} {conditions}""")
             self._connection.commit()
         except Error:
-            return True
-        return False
+            return False
+        return True
 
     def add_record(self, *values) -> bool:
-        '''Attempts to add a record. Returns True if an error occurred, and False otherwise.'''
+        '''Attempts to add a record. Returns False if an error occurred, and True otherwise.'''
         try:
             self._connection.cursor().execute(f'''INSERT INTO {self._table_name} VALUES ({", ".join(values)})''')
             self._connection.commit()
         except Error:
-            return True
-        return False
+            return False
+        return True
 
+    def delete_record(self, conditions: str = "") -> bool:
+        '''Attempts to delete a record. Returns False if an error occurred, and True otherwise.'''
+        try:
+            self._connection.cursor().execute(f"""DELETE FROM {self._table_name} {conditions}""")
+            self._connection.commit()
+        except Error:
+            return False
+        return True
 
 def connect(database_name: str) -> Connection:
     '''Returns the database connection, which needs to be passed into most other functions from this file.'''
